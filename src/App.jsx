@@ -34,9 +34,7 @@ function App() {
       {modal && <Cover closeModal={closeModal} />}
       <div className="flex place-content-center">
         <div className="text-center pt-16">
-          <h1 className="text-red-600 text-6xl">
-            EVIN ARUAN PEMERARIK LARAS TIE NDEK KAWE ISIKN
-          </h1>
+          <h1 className="text-red-600 text-6xl">NIKAH YUKS</h1>
         </div>
 
         <button
