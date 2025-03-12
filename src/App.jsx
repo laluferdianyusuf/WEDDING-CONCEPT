@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import "./App.css";
-import Cover from "./components/cover";
+import Cover from "./components/Cover";
 import Audio from "./assets/audio/wedding.mp3";
 import { PiMusicNotesFill, PiPauseFill } from "react-icons/pi";
 import Menubar from "./components/Menubar";
