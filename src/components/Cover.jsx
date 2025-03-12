@@ -36,10 +36,10 @@ export default function Cover({ closeModal }) {
             </h1>
           </div>
           <div className="font-[Alta] text-center text-black">
-            <p className="text-5xl">save the date</p>
+            <p className="text-3xl">save the date</p>
             <p className="text-2xl">08 May 2026</p>
             <p className="text-xl">09 AM</p>
-            <p className="text-xl pt-7">Jl. TGH. Faisal, No. 114</p>
+            <p className="text-xl">Jl. TGH. Faisal, No. 114</p>
           </div>
         </div>
         <button
