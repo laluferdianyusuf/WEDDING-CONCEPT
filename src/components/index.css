@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "Amsterdam";
+  src: url("../assets/fonts/Amsterdam.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Alta";
+  src: url("../assets/fonts/Alta.otf") format("opentype");
+}
