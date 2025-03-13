@@ -43,7 +43,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/messages`,
+        `https://wedding-concept.vercel.app/messages`,
         newMessages
       );
 
