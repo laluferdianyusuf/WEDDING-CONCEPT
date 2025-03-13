@@ -1,13 +1,26 @@
+/* eslint-disable no-unused-vars */
 import { useState, useRef, useEffect } from "react";
 import "./App.css";
 import Cover from "./components/Cover";
 import Audio from "./assets/audio/wedding.mp3";
-import bg1 from "./assets/images/background3.png";
+import bg3 from "./assets/images/background3.png";
 import Flower from "./assets/images/corner.png";
 import Border from "./assets/images/border.png";
 import Model from "./assets/images/model.png";
 import { PiMusicNotesFill, PiPauseFill } from "react-icons/pi";
 import Menubar from "./components/Menubar";
+import { Swiper, SwiperSlide } from "swiper/react";
+import ListMessages from "./components/ListMessages";
+import AddMessages from "./components/AddMessages";
+import data from "./data/messages.json";
+
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import axios from "axios";
 
 function App() {
   const [modal, setModal] = useState(true);
@@ -15,6 +28,36 @@ function App() {
   const audioRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
   const [isModelVisible, setIsModelVisible] = useState(false);
+  const [messages, setMessages] = useState(data.messages);
+  const [showAddMessages, setShowAddMessages] = useState(false);
+
+  const handleAddMessages = () => {
+    setShowAddMessages(true);
+  };
+
+  const addMessages = async (messages) => {
+    const newMessages = {
+      id: Math.floor(Math.random() * 1000),
+      ...messages,
+    };
+
+    try {
+      const response = await axios.post(
+        `http://localhost:3000/messages`,
+        newMessages
+      );
+
+      setMessages((prevMessages) => [...prevMessages, response.data]);
+
+      setShowAddMessages(false);
+    } catch (error) {
+      console.error("Error adding player:", error);
+    }
+  };
+
+  const handleCancelAdd = () => {
+    setShowAddMessages(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,7 +94,7 @@ function App() {
       {modal && <Cover closeModal={closeModal} />}
       <div
         className="relative w-full flex place-content-center bg-cover bg-center overflow-hidden"
-        style={{ backgroundImage: `url(${bg1})` }}
+        style={{ backgroundImage: `url(${bg3})` }}
       >
         <div className="container mx-auto max-w-screen-lg text-center relative">
           <div
@@ -115,7 +158,7 @@ function App() {
               className="absolute w-62 top-[-4%] left-[-20%] z-0 scale-x-[-1] scale-y-[-1] flower-animation"
             />
           </div>
-          {/* gallery section */}
+
           <div
             className="flex flex-col items-center h-screen justify-center gap-12 relative "
             id=""
@@ -132,24 +175,74 @@ function App() {
               className="absolute w-62 top-[-4%] right-[-20%] z-0 scale-y-[-1] flower-animation"
             />
           </div>
+
           <div
             className="flex flex-col items-center h-screen justify-center gap-12 relative "
             id=""
           >
             <h1 className="text-3xl text-black">Galdsadsadasdlery</h1>
           </div>
+          {/* gallery section */}
           <div
             className="flex flex-col items-center h-screen justify-center gap-12 relative bg-[#ffdbe1]"
             id="gallery"
           >
-            <h1 className="text-3xl text-black">Gallery</h1>
-          </div>
-          {/* messages */}
-          <div
-            className="flex flex-col items-center h-screen justify-center gap-12 relative"
-            id="message"
-          >
-            <h1 className="text-3xl text-black">Message</h1>
+            <h1 className="text-3xl text-black font-[Amsterdam] font-bold">
+              Our Gallery
+            </h1>
+            <Swiper
+              effect={"coverflow"}
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={2}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              pagination={false}
+              navigation={false}
+              modules={[EffectCoverflow, Pagination, Navigation]}
+              className="w-full max-w-2xl h-1/2"
+            >
+              <SwiperSlide>
+                <img
+                  src={Model}
+                  alt="Gallery 1"
+                  className="rounded-lg shadow-lg h-full "
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={Model}
+                  alt="Gallery 2"
+                  className="rounded-lg shadow-lg h-full "
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={Model}
+                  alt="Gallery 3"
+                  className="rounded-lg shadow-lg h-full "
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={Model}
+                  alt="Gallery 4"
+                  className="rounded-lg shadow-lg h-full "
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src={Model}
+                  alt="Gallery 5"
+                  className="rounded-lg shadow-lg h-full "
+                />
+              </SwiperSlide>
+            </Swiper>
           </div>
           {/* location */}
           <div
@@ -157,6 +250,21 @@ function App() {
             id="location"
           >
             <h1 className="text-3xl text-black">Location</h1>
+          </div>
+          {/* messages */}
+          <div
+            className="flex flex-col items-center h-screen justify-center gap-12 relative"
+            id="message"
+          >
+            <h1 className="text-3xl text-black">Message</h1>
+            {showAddMessages ? (
+              <AddMessages
+                addMessages={addMessages}
+                onCancel={handleCancelAdd}
+              />
+            ) : (
+              <ListMessages messages={messages} onAdd={handleAddMessages} />
+            )}
           </div>
 
           <button
