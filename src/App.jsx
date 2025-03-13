@@ -47,10 +47,10 @@ function App() {
   };
 
   return (
-    <div className="">
+    <div className="w-full overflow-auto">
       {modal && <Cover closeModal={closeModal} />}
       <div
-        className="relative flex place-content-center bg-cover bg-center"
+        className="relative w-full flex place-content-center bg-cover bg-center"
         style={{ backgroundImage: `url(${bg1})` }}
       >
         <div className="container mx-auto max-w-screen-lg text-center relative">

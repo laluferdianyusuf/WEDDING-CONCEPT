@@ -26,7 +26,7 @@ export default function Cover({ closeModal }) {
       }}
       className={` ${
         isClosing ? "translate-y-full" : "translate-y-0"
-      } w-full h-screen fixed flex justify-center items-center z-50 transition-all backdrop-blur-lg bg-cover`}
+      } w-full h-screen fixed flex justify-center items-center z-50 transition-all bg-cover`}
     >
       <div className="border border-white w-[85%] h-[93vh] absolute z-30 "></div>
       <div className="border border-white w-[95%] h-[88vh] absolute z-30 "></div>
