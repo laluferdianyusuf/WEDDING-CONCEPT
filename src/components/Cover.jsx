@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "../assets/images/hold.jpg";
 import Hand from "../assets/images/hand.png";
 import "./index.css";
 export default function Cover({ closeModal }) {
   const [isClosing, setIsClosing] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   const handleClose = () => {
     setIsClosing(true);
     setTimeout(() => {
@@ -17,13 +26,13 @@ export default function Cover({ closeModal }) {
       }}
       className={` ${
         isClosing ? "translate-y-full" : "translate-y-0"
-      } w-full h-screen absolute flex justify-center items-center z-50 transition-all backdrop-blur-lg bg-cover`}
+      } w-full h-screen fixed flex justify-center items-center z-50 transition-all backdrop-blur-lg bg-cover`}
     >
       <div className="border border-white w-[85%] h-[93vh] absolute z-30 "></div>
       <div className="border border-white w-[95%] h-[88vh] absolute z-30 "></div>
-      <div className="h-[90vh] w-[90%] flex p-8 backdrop-blur-xs border justify-between border-white z-50 flex-col">
+      <div className="h-[90vh] w-[90%] flex p-8 backdrop-blur-sm border justify-between border-white z-50 flex-col">
+        <img src={Hand} alt="" className="self-center w-1/2" />
         <div className="flex flex-col">
-          <img src={Hand} alt="" className="self-center" />
           <div className="pt-16 pb-14">
             <h1 className={`font-[Amsterdam] text-7xl text-black`}>Aku</h1>
             <h1
@@ -43,7 +52,7 @@ export default function Cover({ closeModal }) {
           </div>
         </div>
         <button
-          className="font-[Alta] self-center justify-end bg-blue-300 rounded-md px-3 text-black text-end cursor-pointer z-50"
+          className="font-[Alta] self-center justify-end bg-[#ffdbe1] rounded-md px-3 text-black text-end cursor-pointer z-50"
           onClick={handleClose}
         >
           CIHUYYY

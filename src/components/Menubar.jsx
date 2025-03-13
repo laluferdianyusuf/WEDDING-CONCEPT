@@ -4,19 +4,19 @@ import { PiImages, PiEnvelopeOpenLight, PiMapPinArea } from "react-icons/pi";
 
 export default function Menubar() {
   return (
-    <div className="absolute bottom-5 px-5 rounded-xl py-2 bg-amber-950 flex gap-7">
-      <button className="cursor-pointer">
+    <div className="fixed bottom-5 px-7 rounded-2xl left-1/2 -translate-x-1/2 py-2 bg-[#ffdbe1] shadow flex gap-7 w-[90%] items-center justify-between">
+      <a className="cursor-pointer" href="#main">
         <TbHome size={30} color="white" />
-      </button>
-      <button className="cursor-pointer">
-        <PiEnvelopeOpenLight size={30} color="white" />
-      </button>
-      <button className="cursor-pointer">
+      </a>
+      <a href="#gallery" className="cursor-pointer">
         <PiImages size={30} color="white" />
-      </button>
-      <button className="cursor-pointer">
+      </a>
+      <a className="cursor-pointer" href="#message">
+        <PiEnvelopeOpenLight size={30} color="white" />
+      </a>
+      <a className="cursor-pointer" href="#location">
         <PiMapPinArea size={30} color="white" />
-      </button>
+      </a>
     </div>
   );
 }

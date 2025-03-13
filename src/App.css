@@ -7,3 +7,34 @@
   font-family: "Alta";
   src: url("../assets/fonts/Alta.otf") format("opentype");
 }
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.flower-animation {
+  animation: pulse 3s infinite ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.model-animation {
+  animation: fadeIn 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
